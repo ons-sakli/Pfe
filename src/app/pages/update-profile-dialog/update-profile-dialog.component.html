@@ -1,0 +1,35 @@
+<h2 mat-dialog-title >Update Your Profile</h2>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username" required />
+  </div>
+
+  <div class="form-group">
+    <label for="opMat">OpMat:</label>
+    <input type="text" id="opMat" formControlName="opMat" required />
+  </div>
+
+  <div class="form-group">
+    <label for="segment">Segment:</label>
+    <mat-select formControlName="segment" required>
+      <mat-option value="" disabled selected>Select Segment</mat-option>
+      <mat-option value="Faoca">Faoca</mat-option>
+      <mat-option value="Segment 24">Segment 24</mat-option>
+      <mat-option value="Segment 30">Segment 30</mat-option>
+    </mat-select>
+  </div>
+
+<div class="form-group">
+  <label for="groupe">Groupe:</label>
+  <mat-select formControlName="groupe" required>
+    <mat-option value="" disabled selected>Select Groupe</mat-option>
+    <mat-option *ngFor="let groupe of groupes" [value]="groupe.value">{{ groupe.label }}</mat-option>
+  </mat-select>
+</div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="profileForm.invalid">Save</button>
+    <button type="button">Cancel</button>
+  </div>
+</form>

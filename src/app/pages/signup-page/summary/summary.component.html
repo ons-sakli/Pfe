@@ -1,0 +1,41 @@
+<div class="summary-container">
+  <!-- Personal Details -->
+  <div class="summary-box">
+    <div class="summary-title">
+      <span>Personal Details</span>
+      <span class="edit-icon">✏️</span>
+    </div>
+    <div class="summary-content">
+      <p>Matricule number: {{ authService.personalDetails?.matricule }}</p>
+      <p>First Name: {{ authService.personalDetails?.firstName }}</p>
+      <p>Last Name: {{ authService.personalDetails?.lastName }}</p>
+      <p>National ID Number: {{ authService.personalDetails?.nid }}</p>
+    </div>
+  </div>
+
+  <!-- Account Details -->
+  <div class="summary-box">
+    <div class="summary-title">
+      <span>Account Details</span>
+      <span class="edit-icon">✏️</span>
+    </div>
+    <div class="summary-content">
+      <p>Username: {{ authService.accountDetails?.username }}</p>
+      <p>Password: {{ authService.accountDetails?.password }}</p>
+      <p>Role: {{ authService.accountDetails?.role }}</p>
+    </div>
+  </div>
+<!-- Work Information -->
+<div class="summary-box">
+  <div class="summary-title">
+    <span>Work Information</span>
+    <span class="edit-icon">✏️</span>
+  </div>
+  <div class="summary-content">
+    <p>Factory Site: {{ authService.workInformation?.factorySite}}</p>
+    <p>Segment: {{ authService.workInformation?.segment}}</p>
+  </div>
+</div>
+<div class="confirm-button-container">
+  <button class="btn-confirm" (click)="Confirm()">Confirm</button>
+</div>

@@ -1,0 +1,72 @@
+.account-form {
+  background-color: #002857; /* Dark blue form background */
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-title {
+  font-style: italic;
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-select {
+  width: 60%;
+  background: transparent;
+  border: 1px solid #00bfff;
+  border-radius: 12px;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 25px;
+  height: 45px;
+  opacity: 1;
+}
+
+/* Optional: style the selected value */
+::ng-deep .mat-select-value {
+  color: #00bfff; /* Light blue selected text */
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.back-button, .next-button {
+  background-color: #00bfff;
+  color: white !important;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button:hover, .next-button:hover {
+  background-color: #0ae2ffdc;
+}
+
+/* Push the back button to the left and next button to the right */
+.back-button {
+  margin-left: 20px;
+}
+
+.next-button {
+  margin-right: 20px;
+}

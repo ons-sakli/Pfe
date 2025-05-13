@@ -1,0 +1,27 @@
+<div>
+  <h3 class="form-title">Your work information</h3>
+
+  <form [formGroup]="workInfoForm" (ngSubmit)="onSubmit()" class="account-form">
+    <div class="form-group">
+
+        <mat-select formControlName="factorySite" required>
+          <mat-option value="" disabled selected>Factory site</mat-option>
+          <mat-option value="LTN03">LTN03</mat-option>
+          <mat-option value="LTN04">LTN04</mat-option>
+        </mat-select>
+
+        <mat-select formControlName="segment" required>
+          <mat-option value="" disabled selected>Segment</mat-option>
+          <mat-option value="Faoca">Faoca</mat-option>
+          <mat-option value="Segment 24">Segment 24</mat-option>
+          <mat-option value="Segment 30">Segment 30</mat-option>
+        </mat-select>
+
+      <div class="buttons">
+        <button mat-button type="button" (click)="Goback()" class="back-button">⬅</button>
+        <button mat-button type="submit" class="next-button">Next</button>
+      </div>
+
+    </div>
+  </form>
+</div>

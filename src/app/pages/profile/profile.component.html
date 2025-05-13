@@ -1,0 +1,22 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <!-- Avatar -->
+    <div class="avatar">{{ userInitials }}</div>
+
+    <!-- Profile Information -->
+    <div class="profile-info">
+      <div class="info-group">
+        <p><span>Username:</span> {{ user.username || 'N/A' }}</p>
+        <p *ngIf="user.opMat"><span>Matricule:</span> {{ user.opMat }}</p>
+      </div>
+      <div class="info-group">
+        <p *ngIf="user.segment"><span>Segment:</span> {{ user.segment.segmentName }}</p>
+        <p><span>Groupe:</span> {{ user.groupe || 'N/A' }}</p>
+      </div>
+    </div>
+
+    <!-- Update Button -->
+    <button class="update-button" (click)="openUpdateForm()">Update</button>
+  </div>
+</div>
+

@@ -1,0 +1,117 @@
+/* Main container */
+.login-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Left side (Logo + Image) */
+  .left-section {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content:flex-start;
+  }
+   .lamp-image{
+    width: 320px;
+    max-width: 100%;
+    padding-left: 10%;
+  
+  
+   }
+  
+  .logo{
+    width: 130px;
+    max-width: 100%;
+  padding-left: 25%;
+  }
+  
+  /* Right side (Login form) */
+  .right-section {
+    flex: 1;
+    background-color: white;
+    padding: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-title {
+    color: #002c5f;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .signup-text {
+    font-size: 12px;
+    color: lightgray;
+    margin-bottom: 30px;
+  }
+  
+  .signup-link {
+    color: #ff6600;
+    text-decoration: none;
+    margin-left: 5px;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Form styling */
+  .login-form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 12px 5px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+    font-size: 14px;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    background-color: #e9e9e9;
+  }
+  
+  .forgot-password {
+    font-size: 12px;
+    color: lightgray;
+    text-decoration: none;
+    margin-left: 0px;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  /* Login button */
+  .login-button {
+    width: 108%;
+    padding: 12px;
+    background-color: #002c5f;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #001f3d;
+  }
+  

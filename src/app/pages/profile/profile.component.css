@@ -1,0 +1,82 @@
+/* Profile Container */
+.profile-container {
+  background: url('/17976.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Profile Card */
+.profile-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem 2.5rem; /* Adjusted padding to accommodate avatar */
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative; /* Needed for positioning the avatar */
+  text-align: center; /* Center all other content inside the card */
+}
+
+/* Avatar */
+.avatar {
+  width: 60px; /* Slightly larger avatar for better visibility */
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e3e9f3;
+  color: #003366;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute; /* Fixed position within the card */
+  top: 1rem; /* Positioned from the top */
+  left: 1.5rem; /* Positioned from the left */
+  border: 2px solid #003366;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Profile Info */
+.profile-info {
+  margin-top: 5rem; /* Push profile-info down to avoid overlapping with avatar */
+}
+
+/* Info Group */
+.info-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem; /* Add spacing between info groups */
+  flex-wrap: wrap;
+}
+
+.info-group p {
+  width: 48%; /* Two columns per row */
+  margin: 0.5rem 0; /* Adjust spacing between rows */
+  font-size: 0.95rem;
+  text-align: left; /* Align text to the left for better readability */
+}
+
+.info-group span {
+  font-weight: bold;
+  color: #003366;
+}
+
+/* Update Button */
+.update-button {
+  margin-top: 1.5rem;
+  background-color: #003366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.update-button:hover {
+  background-color: #0052a3;
+}

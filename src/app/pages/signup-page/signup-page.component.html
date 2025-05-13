@@ -1,0 +1,40 @@
+<div class="logo-container">
+<img src="téléchargement (1).jpeg" alt="LEONI Logo" class="logo" />
+</div>
+<div class="container">
+    <div class="stepper-container">
+      <h2 class="create-account-title">Create account</h2>
+      <mat-vertical-stepper labelPosition="bottom" [linear]="true" [(selectedIndex)]="selectedIndex">
+        <mat-step label="Personal Details">
+          <ng-template matStepLabel>Personal Details</ng-template>
+        </mat-step>
+        <mat-step label="Account Details">
+          <ng-template matStepLabel>Account Details</ng-template>
+        </mat-step>
+        <mat-step label="Work Information">
+          <ng-template matStepLabel>Work Information</ng-template>
+        </mat-step>
+        <mat-step label="Summary">
+          <ng-template matStepLabel>Summary</ng-template>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  
+    <div class="form-container">
+      <app-personal-details *ngIf="selectedIndex === 0" 
+      (stepChange)="handleStepChange($event)" 
+      (formSubmit)="updatePersonalDetails($event)">
+    </app-personal-details>
+
+      <app-account-details *ngIf="selectedIndex === 1" 
+      (stepChange)="handleStepChange($event)" 
+      (formSubmit)="updateAccountDetails($event)"></app-account-details>
+      
+      <app-work-information *ngIf="selectedIndex === 2"
+       (stepChange)="handleStepChange($event)" 
+       (formSubmit)="updateWorkInformation($event)"></app-work-information>
+
+       <app-summary *ngIf="selectedIndex === 3"></app-summary>
+
+  </div>
+  

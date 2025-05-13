@@ -1,0 +1,91 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+.launch-container {
+    background: url('/17976.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto; /* Just in case content overflows */
+  }
+  
+  .navbar {
+    width: 100%;
+    height: 60px;
+    background-color: #002857;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+  }
+  
+  .logo {
+    height: 60px;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  nav .active {
+    color: orange;
+  }
+  
+  .user-circle {
+    background-color: white;
+    color: #002857;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .form-card {
+    background: rgba(255, 255, 255, 0.9);
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  input,
+  select {
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+  }
+  
+  button {
+    margin-top: 25px;
+    padding: 10px;
+    border: none;
+    background-color: #002857;
+    color: white;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

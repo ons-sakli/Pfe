@@ -1,0 +1,60 @@
+.summary-box {
+    border: 2px solid #00AEEF;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: transparent; /* Dark blue background inside */
+    position: relative;
+  }
+  
+  .summary-title {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background-color: #002857; /* Match box background */
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    color: #00AEEF;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 16px;
+  }
+  
+  .edit-icon {
+    font-size: 18px;
+    margin-left: 5px;
+    color: #00AEEF;
+    cursor: pointer;
+  }
+  
+  .summary-content p {
+    color: white;
+    margin: 8px 0;
+    font-size: 16px;
+  }
+  
+  /* Confirm Button Styling */
+/* Confirm Button Styling */
+.confirm-button-container {
+    display: flex;
+    justify-content: flex-end; /* Now on the right */
+    margin-top: 20px;
+  }
+  
+  .btn-confirm {
+    background-color: #00AEEF;
+    color: #ffffff;
+    border: 2px  ;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+
+  .btn-confirm:hover {
+    background-color: #0ae2ffdc;
+    color: white;
+  }
