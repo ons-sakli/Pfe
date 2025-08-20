@@ -1,0 +1,78 @@
+<div class="update-machine-section">
+  <div class="update-machine-container">
+    <h1>Machine Configuration Panel</h1>
+
+    <table mat-table [dataSource]="paginatedMachines" class="mat-elevation-z1 full-width-table">
+      
+      <!-- Machine Number -->
+      <ng-container matColumnDef="nrMachine">
+        <th mat-header-cell *matHeaderCellDef> Machine </th>
+        <td mat-cell *matCellDef="let m" [class.inactive-machine]="!m.active"> {{ m.nrMachine }} </td>
+      </ng-container>
+
+      <!-- Client -->
+      <ng-container matColumnDef="client">
+        <th mat-header-cell *matHeaderCellDef> Client </th>
+        <td mat-cell *matCellDef="let m" [class.inactive-machine]="!m.active"> {{ m.client }} </td>
+      </ng-container>
+
+      <!-- Type -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let m" [class.inactive-machine]="!m.active"> {{ m.type }} </td>
+      </ng-container>
+
+      <!-- Segment -->
+      <ng-container matColumnDef="segmentName">
+        <th mat-header-cell *matHeaderCellDef> Segment </th>
+        <td mat-cell *matCellDef="let m" [class.inactive-machine]="!m.active">
+          {{ m.segmentName || m.segment?.segmentName || 'N/A' }}
+        </td>
+      </ng-container>
+
+      <!-- Plant Site -->
+      <ng-container matColumnDef="plantSiteName">
+        <th mat-header-cell *matHeaderCellDef> Plant Site </th>
+        <td mat-cell *matCellDef="let m" [class.inactive-machine]="!m.active">
+          {{ m.plantSiteName || 'N/A' }}
+        </td>
+      </ng-container>
+
+      <!-- Actions -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let m">
+          <button mat-icon-button color="primary" (click)="updateMachine(m)" matTooltip="Update Machine">
+            <mat-icon>update</mat-icon>
+          </button>
+          <button 
+            mat-icon-button 
+            [color]="m.active ? 'primary' : 'warn'" 
+            (click)="toggleMachineStatus(m)" 
+            [matTooltip]="m.active ? 'Deactivate Machine' : 'Activate Machine'">
+<mat-icon>{{ m.active ? 'check_circle' : 'highlight_off' }}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <!-- Header & Rows -->
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+
+<!-- Pagination + Search -->
+<div class="paginator-wrapper">
+  <mat-paginator
+    [length]="filteredMachines.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 15]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+
+  <!-- Search box inside paginator area (right side) -->
+  <div class="filter-box">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by MachineNumber</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex: 1346890-1" />
+    </mat-form-field>
+  </div>
+</div>

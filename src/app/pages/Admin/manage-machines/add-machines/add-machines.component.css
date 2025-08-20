@@ -1,0 +1,82 @@
+/* Background Section */
+.add-machine-section {
+  background: url('/17976.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form Container */
+.add-machine-container {
+  max-width: 500px;
+  padding: 30px 40px;
+  background-color: rgba(255, 255, 255, 0.82); /* semi-transparent white */
+  color: #002857;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Section title */
+.create-account-title {
+  text-align: center;
+  color: #002857;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Form fields and inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+  background-color: transparent;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.submit-btn {
+  background-color: #002857;
+  color: white !important;
+  padding: 10px 25px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+.submit-btn:hover {
+  background-color: #021831;
+    color: #e66611 !important;
+
+}
+
+
+/* Override Angular Material styles */
+::ng-deep .mat-form-field-label {
+  color: #002857 !important;
+  opacity: 1 !important;
+}
+
+::ng-deep .mat-input-element {
+  color: #002857 !important;
+}
+
+::ng-deep .mat-input-element::placeholder {
+  color: #002857 !important;
+  opacity: 0.6 !important;
+}

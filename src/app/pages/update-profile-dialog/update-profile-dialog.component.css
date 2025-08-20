@@ -1,99 +1,159 @@
-/* Dialog Container */
-.mat-dialog-container {
-  background: #f9f9f9; /* Light background for better readability */
-  height: 100vh;
+.profile-update-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-content {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  flex-direction: column;
+  gap: 18px;
+  padding: 12px 0;
 }
 
-/* Dialog Card */
-.mat-dialog-content {
-  background-color: #ffffff; /* Pure white for simplicity */
-  border-radius: 12px; /* Rounded corners for a softer look */
-  padding: 2rem;
-  max-width: 450px; /* Slightly smaller width for better focus */
-  width: 90%;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  text-align: center; /* Center all content inside the dialog */
-}
-
-/* Title */
-h2[mat-dialog-title] {
-  font-size: 1.5rem;
-  color: #002a53; /* Updated blue color */
-  margin-bottom: 1.5rem;
-  font-weight: 600; /* Bold for emphasis */
-  text-align: center; /* Ensure the title is centered */
-}
-
-/* Form Group */
 .form-group {
-  margin-bottom: 1.5rem; /* Add vertical spacing between fields */
-  text-align: center; /* Center inputs and labels */
-}
-
-/* Labels */
-label {
-  display: block;
-  font-size: 0.9rem; /* Medium font size */
-  color: #002a53; /* Updated blue color */
-  margin-bottom: 0.5rem; /* Space between label and input */
-  font-weight: 500; /* Slightly bold for clarity */
-}
-
-/* Inputs */
-input[type="text"],
-mat-select {
-  width: 80%; /* Medium size (not full width) */
-  margin: 0 auto; /* Center the input horizontally */
-  padding: 0.8rem; /* Comfortable padding */
-  border: 1px solid #ddd; /* Light border for subtle definition */
-  border-radius: 8px; /* Rounded corners for inputs */
-  font-size: 1rem; /* Match font size with labels */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth focus effect */
-  display: block; /* Ensure proper centering */
-}
-
-input[type="text"]:focus,
-mat-select:focus {
-  border-color: #007bff; /* Highlight border on focus */
-  outline: none; /* Remove default focus outline */
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Soft glow on focus */
-}
-
-/* Dropdown Styling */
-mat-select {
-  text-align: left; /* Align dropdown text to the left */
-}
-
-/* Form Actions */
-.form-actions {
   display: flex;
-  justify-content: center; /* Center buttons */
-  gap: 1rem; /* Add space between buttons */
-  margin-top: 1.5rem; /* Add space above the buttons */
+  flex-direction: column;
+  gap: 6px;
 }
 
-/* Buttons */
-button {
-  padding: 0.8rem 1.5rem;
-  border: none;
-    border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600; /* Bold text for buttons */
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
-  background-color: #d6dee6; /* Default gray color */
-  color: #333; /* Dark text for contrast */
+.form-group label {
+  font-weight: 600;
+  color: #002857;
+  font-size: 14px;
+  letter-spacing: 0.1px;
 }
 
-button:hover {
-  background-color: #002a53; /* Updated blue on hover */
-  color: #fff; /* White text for contrast */
+.input-field,
+.mat-mdc-select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: white;
 }
 
-button:active {
-  background-color: #001e3c; /* Darker blue when clicked */
+.input-field:focus,
+.mat-mdc-select:focus {
+  outline: none;
+  border-color: #002857;
+  box-shadow: 0 0 0 2px rgba(0, 40, 87, 0.1);
+}
+
+.input-field.invalid,
+.mat-mdc-select.ng-invalid.ng-touched {
+  border-color: #d32f2f;
+  background-color: #fdf2f2;
+}
+
+.readonly-input {
+  background-color: #f8f9fa;
+  color: #555;
+  cursor: not-allowed;
+  border: 1px solid #ddd;
+  font-style: italic;
+}
+
+.form-actions {
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.form-actions button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: none;
+  transition: all 0.3s ease;
+}
+
+.save-btn {
+  background-color: #002857;
+  color: white;
+}
+
+.save-btn:hover:not(:disabled) {
+  background-color: #001d40;
+  color: #f06b13;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 40, 87, 0.2);
+}
+
+.save-btn:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-actions button[mat-button] {
+  color: #666;
+  background: transparent;
+}
+
+.form-actions button[mat-button]:hover:not(:disabled) {
+  background-color: #f0f0f0;
+  color: #002857;
+}
+
+.password-change-section {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px dashed #002857;
+  border-radius: 8px;
+  background-color: #f9fbff;
+}
+
+.password-change-section .section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #002857;
+  margin: 0 0 12px 0;
+}
+
+.error {
+  font-size: 12px;
+  color: #d32f2f;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.error::before {
+  content: "⚠️";
+  font-size: 10px;
+}
+
+/* Blur the background behind the dialog */
+::ng-deep .cdk-overlay-dark-backdrop {
+  backdrop-filter: blur(8px) brightness(0.8);
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  transition: backdrop-filter 0.3s ease;
+}
+
+/* Ensure dialog content stays sharp and not blurred */
+::ng-deep .mat-mdc-dialog-container {
+  backdrop-filter: none !important;
+}
+
+/* Optional: Add subtle zoom-in animation */
+::ng-deep .mat-mdc-dialog-animation-container {
+  animation: dialogEnter 0.3s ease-out;
+}
+
+@keyframes dialogEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

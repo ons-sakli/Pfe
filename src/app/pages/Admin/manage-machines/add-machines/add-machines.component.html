@@ -1,0 +1,111 @@
+<div class="add-machine-section">
+  <div class="add-machine-container">
+    <h2 class="create-account-title">Setup New Machine</h2>
+
+    <form (ngSubmit)="addMachine()" [formGroup]="machineForm">
+
+      <!-- Machine Number -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Machine Number</mat-label>
+          <input
+            matInput
+            formControlName="nrMachine"
+            placeholder="Enter machine number"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Type -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Type</mat-label>
+          <input
+            matInput
+            formControlName="type"
+            [matAutocomplete]="autoType"
+            placeholder="Enter or select a type"
+            required
+          />
+          <mat-autocomplete #autoType="matAutocomplete">
+            <mat-option *ngFor="let type of machineTypes" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Client -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Client</mat-label>
+          <input
+            matInput
+            formControlName="client"
+            [matAutocomplete]="autoClient"
+            placeholder="Enter or select a client"
+            required
+          />
+          <mat-autocomplete #autoClient="matAutocomplete">
+            <mat-option *ngFor="let client of clients" [value]="client">
+              {{ client }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Plant Site Name -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Plant Site Name</mat-label>
+          <input
+            matInput
+            formControlName="plantSiteName"
+            [matAutocomplete]="autoPlantSite"
+            placeholder="Enter or select a plant site name"
+            required
+          />
+          <mat-autocomplete #autoPlantSite="matAutocomplete">
+            <mat-option *ngFor="let site of plantSiteNames" [value]="site">
+              {{ site }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Segment -->
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Segment</mat-label>
+          <input
+            matInput
+            formControlName="segmentName"
+            [matAutocomplete]="autoSegment"
+            placeholder="Select a segment"
+            required
+            [disabled]="!machineForm.get('plantSiteName')?.value"
+          />
+          <mat-autocomplete #autoSegment="matAutocomplete">
+            <mat-option *ngFor="let s of filteredSegments" [value]="s.segmentName">
+              {{ s.segmentName }} ({{ s.plantSiteName }})
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="machineForm.invalid"
+        >
+          Add Machine
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

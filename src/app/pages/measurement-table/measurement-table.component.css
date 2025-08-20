@@ -1,0 +1,378 @@
+/* Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Container */
+.measurement-table-container {
+  background: url('/17976.jpg') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+/* Heading */
+h2 {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(1, 9, 117, 0.479);
+  letter-spacing: 0.5px;
+  padding: 10px 0;
+  position: relative;
+}
+
+/* Optional: Add a subtle underline or border to highlight */
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #e6781f;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* Table */
+.large-table {
+  border-collapse: collapse;
+  width: 95%;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.large-table th {
+  background-color: #002857;
+  color: #e6781f;
+  padding: 0px;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-size: small;
+}
+
+.large-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+}
+
+.large-table input {
+  width: 60px;
+  padding: 4px;
+  border: 0.5px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  background: white;
+}
+
+/* Buttons *
+button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #002857;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #e6781f;
+}*/
+
+/* Result text */
+.result {
+  margin-top: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Charts Container */
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Chart.js canvas container */
+.chart-container {
+  flex: 1 1 450px;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Optional chart heading */
+.chart-container h3 {
+  margin-bottom: 10px;
+  color: #002857;
+}
+
+/* Ensure the canvas fills the container */
+.chart-container canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Result Row - Status */
+.result-row th {
+  background-color: #002857;
+  color: #e6781f;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.result-row td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+@media print, screen {
+  .btn-pdf { display: none !important; }
+  .actions button[disabled] { display: none !important; }
+}
+
+input[disabled] {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+input::placeholder {
+  color: #ccc;
+  font-style: italic;
+}
+
+/* Calculate & Save Button */
+.btn-calculate-save {
+  background: #002857;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.3s ease;
+}
+
+.btn-calculate-save:hover:not([disabled]) {
+  background: #002957ec;
+    color: #f0752e;
+}
+.btn-calculate-save:disabled {
+  background: #6c757d; /* Grayed out */
+  color: #e9ecef;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-calculate-save:disabled:hover {
+  background: #6c757d;
+}
+/* Group buttons horizontally */
+.actions, .button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* Ensure all action buttons are inline */
+.actions button, .button-group button {
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Back button in same line when grouped */
+.actions + button, .button-group + button {
+  margin-top: 0;
+
+}
+/* Full-screen overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Above everything */
+  inset: 0; /* Modern alternative to top/left/width/height */
+}
+
+/* Modal dialog */
+.modal {
+  background: rgb(255, 255, 255);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 16px 70px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 90vw; /* Responsive on small screens */
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Modal title */
+.modal h3 {
+  margin-top: 0;
+  color: #002857;
+  font-size: 1.3rem;
+}
+
+/* Modal textarea */
+.modal-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Action buttons */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Optional: Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}/* 1. Back Button */
+.btn-back {
+  background: #002857;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #002957ec;
+    color: rgb(235, 137, 9);
+}
+
+/* 2. Hide Button (in header) */
+.btn-hide {
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+/* 3. Confirm Hide Button (modal) */
+.btn-confirm-hide {
+  background: #002857;
+    color: #f0752e;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-confirm-hide:hover:not([disabled]) {
+  background: #002857;
+}
+
+.btn-confirm-hide[disabled] {
+  background: #da6c2d9c;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.btn-confirm-hide:focus:not([disabled]) {
+  outline: 2px solid #f0752e;
+}
+
+
+/* 4. Cancel Button (modal) */
+.btn-cancel {
+  background: #757575;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-cancel:hover {
+  background: #616161;
+}
+
+.btn-cancel:focus {
+  outline: 2px solid #ccc;
+}/* Hidden column header (Admin only) */
+.hidden-col-header {
+  background-color: #002857 !important;
+  position: relative;
+}
+
+.hidden-col-header::after {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 10px;
+  color: #d32f2f;
+}
+
+/* Hidden data cells */
+.hidden-col-cell {
+  background-color: #f0752ecc !important;
+  opacity: 0.8;
+  border: 1px dashed #8a4c28;
+}
+
+.hidden-col-cell input {
+  background-color: #ec732ce8 !important;
+  color: #000000 !important;
+  border: 1px dashed #8a4c28;
+  cursor: not-allowed;
+}

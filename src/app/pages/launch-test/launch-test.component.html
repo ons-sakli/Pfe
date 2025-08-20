@@ -1,27 +1,57 @@
 <div class="launch-container">
   <div class="form-card">
-    <form>
-      <label>PDS Nº</label>
-      <input type="number" />
+    <form (ngSubmit)="onSubmit()">
 
-      <label>Sample number</label>
-      <select>
-        <option>1</option>
-        <option>5</option>
+      <!-- Machine -->
+      <label>Machine Nº</label>
+      <select (change)="onMachineChange($event)" required>
+        <option value="" disabled selected>Select Machine</option>
+        <option *ngFor="let m of machines" [value]="m.nrMachine">
+          {{ m.nrMachine }}
+        </option>
       </select>
 
-      <label>Wire section</label>
-      <select>
-        <option>0.75</option>
+      <!-- Sample Number -->
+    <label>Sample number</label>
+<div *ngIf="isOperator; else qmSample">
+  <input type="number" [value]="5" disabled />
+</div>
+
+<ng-template #qmSample>
+  <input type="number" [value]="1" disabled />
+</ng-template>
+
+      <!-- Wire Section -->
+      <label for="wireSection">Wire Section</label>
+      <select
+        id="wireSection"
+        name="wireSection"
+        [(ngModel)]="formData.wireSection"
+        (change)="onSectionChange()"
+        required>
+        <option value="" disabled selected>Select a wire section</option>
+        <option *ngFor="let section of wireSections" [value]="section.id">
+          {{ section.section }}
+        </option>
       </select>
 
+      <!-- Traction Min -->
+      <label>Traction min</label>
+      <input type="number" [value]="selectedSection?.tracMin ?? ''" disabled />
+
+      <!-- Pelage Limit -->
       <label>Pelage limits</label>
-      <input type="text" disabled value="Auto-filled" />
+      <input type="number" [value]="pelageLimit ?? ''" disabled />
 
+      <!-- R Limit -->
       <label>R limits</label>
-      <input type="text" disabled value="Auto-filled" />
+      <input type="number" [value]="rLimit ?? ''" disabled />
 
-      <button type="submit">Submit</button>
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="!formData.machine || !formData.wireSection">
+        Submit
+      </button>
+
     </form>
   </div>
 </div>

@@ -1,0 +1,18 @@
+<div class="delete-machine-section">
+  <div class="delete-machine-container">
+    <h2 class="delete-title-left">Delete Machine</h2>
+
+    <form (ngSubmit)="deleteMachine()" class="delete-form">
+      <div class="form-group">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Machine Number</mat-label>
+          <input matInput [(ngModel)]="machineNr" name="machineNr" required placeholder="Enter machine number" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-actions">
+        <button mat-button type="submit" class="delete-btn">🗑️ Delete</button>
+      </div>
+    </form>
+  </div>
+</div>

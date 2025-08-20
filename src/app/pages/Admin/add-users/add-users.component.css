@@ -1,0 +1,163 @@
+body { 
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+ padding: 1rem;
+}
+
+mat-tab-group {
+  background: transparent;
+  border-radius: 0px;
+}
+
+
+.container {
+    
+    display: flex;
+    max-width: 1200px;
+    margin: 26px auto;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.stepper-container {
+    width: 300px;
+    background: #fff;
+    padding-top: 30px;
+    padding-left: 30px;
+    border: 2px solid #002857;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.create-account-title {
+    color: #00B2FF;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+/* Stepper Styles */
+.mat-vertical-stepper {
+    width: 100%;
+}
+
+.mat-vertical-stepper .mat-stepper-vertical-line {
+    border-left: 2px solid #cce6ff;
+    margin-left: 12px;
+    border-radius: 5px;
+    height: 50px;
+}
+
+.mat-vertical-stepper .mat-step-header {
+    padding: 20px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    
+}
+.mat-step-header .mat-ripple-element {
+  display: none;
+}
+
+.mat-vertical-stepper .mat-step-icon {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #002857;
+    border-radius: 50%;
+    background-color: white;
+    color: #002857;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ✅ Completed step */
+.mat-vertical-stepper .mat-step-icon-completed {
+    background-color: #00aaff;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+}
+
+.mat-vertical-stepper .mat-step-icon-completed::after {
+    content: '✔';
+    position: absolute;
+    font-size: 18px;
+}
+
+.mat-vertical-stepper .mat-step-icon-active {
+    background-color: #002857;
+    color: white;
+}
+
+.mat-vertical-stepper .mat-step-label {
+    font-weight: bold;
+    color: #002857;
+    margin-left: 10px;
+}
+
+/* Form Container */
+.form-container {
+    flex: 1;
+    padding: 40px;
+    background-color: #002857;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.form-title {
+    font-style: italic;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #00aaff;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input::placeholder {
+    color: #ffffff;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.next-button {
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    align-self: flex-end;
+}
+
+.next-button:hover {
+    background-color: #008ecc;
+}

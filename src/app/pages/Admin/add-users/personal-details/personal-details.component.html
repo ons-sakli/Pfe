@@ -1,0 +1,26 @@
+<div>
+  <h3 class="form-title">Personal Details</h3>
+  <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+    <!-- First Name -->
+    <div class="form-group">
+      <input matInput type="text" placeholder="First Name" formControlName="firstName" required />
+    </div>
+    <!-- Last Name -->
+    <div class="form-group">
+      <input matInput type="text" placeholder="Last Name" formControlName="lastName" required />
+    </div>
+     <!-- Email (only for QM) -->
+    <div class="form-group" *ngIf="authService.accountDetails?.role === 'QM'">
+      <input matInput type="email" placeholder="Email Address" formControlName="email" required />
+    </div>
+    <!-- Phone Number -->
+<div class="form-group">
+  <input matInput type="text" placeholder="Phone Number (Optional)" formControlName="phoneNumber" />
+</div>
+    <!-- Navigation Buttons -->
+    <div class="next-button-container">
+      <button mat-button type="button" (click)="Goback()" class="back-button" style="font-size: 30px;">⬅</button>
+      <button mat-button type="submit" class="next-button">Next</button>
+    </div>
+  </form>
+</div>

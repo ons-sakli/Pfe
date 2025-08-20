@@ -1,0 +1,46 @@
+  <mat-tab-group>  
+      <mat-tab label="➕ADD">
+<div class="container">
+    <!-- TAB 1: ADD -->
+      <div class="stepper-container">
+<mat-vertical-stepper labelPosition="bottom" [linear]="true" [(selectedIndex)]="selectedIndex">
+  <mat-step
+    label="Account Details"
+    [stepControl]="accountForm"
+    [completed]="selectedIndex > 0">
+    <ng-template matStepLabel>Account Details</ng-template>
+  </mat-step>
+  <mat-step
+    label="Personal Details"
+    [stepControl]="personalForm"
+    [completed]="selectedIndex > 1">
+    <ng-template matStepLabel>Personal Details</ng-template>
+  </mat-step>
+  <mat-step
+    label="Work Information"
+    [stepControl]="workForm"
+    [completed]="selectedIndex > 2">
+    <ng-template matStepLabel>Work Information</ng-template>
+  </mat-step>
+  <mat-step
+    label="Summary"
+    [completed]="selectedIndex === 3"
+    [editable]="selectedIndex === 3">
+    <ng-template matStepLabel>Summary</ng-template>
+  </mat-step>
+</mat-vertical-stepper>
+      </div> <div class="form-container">
+        <app-account-details *ngIf="selectedIndex === 0" (stepChange)="handleStepChange($event)" (formSubmit)="updateAccountDetails($event)" (formGroupReady)="handleAccountFormReady($event)">
+</app-account-details>
+<app-personal-details *ngIf="selectedIndex === 1" (stepChange)="handleStepChange($event)" (formSubmit)="updatePersonalDetails($event)" (formGroupReady)="handlePersonalFormReady($event)">
+</app-personal-details>
+<app-work-information *ngIf="selectedIndex === 2" (stepChange)="handleStepChange($event)" (formSubmit)="updateWorkInformation($event)" (formGroupReady)="handleWorkFormReady($event)">
+</app-work-information>
+        <app-summary   *ngIf="selectedIndex === 3" (stepChange)="handleStepChange($event)"></app-summary>
+   </div>  </div>
+    </mat-tab>
+    <!-- TAB 3: CONSULT / UPDATE -->
+    <mat-tab label="📋CONSULT">
+      <app-consult-update-user></app-consult-update-user>
+    </mat-tab>
+  </mat-tab-group>

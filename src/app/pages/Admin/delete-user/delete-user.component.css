@@ -1,0 +1,88 @@
+.delete-section-bg {
+  background: url('/17976.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 4rem 1rem;
+  min-height: 100vh;
+}
+
+.delete-user-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px 40px;
+  background-color: rgba(255, 255, 255, 0.788); /* white with slight transparency */
+  color: #002857;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+.mat-form-field.full-width {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the form elements */
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+  background-color: transparent;
+}
+
+/* Ensure the delete button is also centered */
+.delete-btn {
+  align-self: center; /* Center the button horizontally */
+  background-color: #002857;
+  color: white !important;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+
+}
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.delete-btn:hover {
+  background-color: #053e80e7;
+}
+::ng-deep .mat-form-field-label {
+  color: white !important;
+  opacity: 1 !important;
+}
+
+::ng-deep .mat-select-value,
+::ng-deep .mat-select-value-text {
+  color: white !important;
+}
+
+::ng-deep .mat-select-placeholder {
+  color: white !important;
+  opacity: 0.8 !important;
+}
+
+::ng-deep .mat-input-element {
+  color: white !important;
+}
+
+::ng-deep .mat-input-element::placeholder {
+  color: white !important;
+  opacity: 0.8 !important;
+}
+
+::ng-deep .mat-select-arrow {
+  color: white !important;
+}

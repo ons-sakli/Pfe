@@ -1,0 +1,31 @@
+<div>
+  <h3 class="form-title">Work Information</h3>
+  <form [formGroup]="workInfoForm" (ngSubmit)="onSubmit()" class="account-form">
+    <div class="form-group">
+      <!-- Factory Site (Auto-filled, disabled) -->
+      <mat-form-field>
+        <mat-label>Factory Site</mat-label>
+        <mat-select formControlName="factorySite">
+          <mat-option value="LTN03">LTN03</mat-option>
+          <mat-option value="LTN04">LTN04</mat-option>
+        </mat-select>
+        <mat-hint>Auto-filled from Account Details</mat-hint>
+      </mat-form-field>
+      <!-- Segment (Editable) -->
+      <mat-form-field>
+        <mat-label>Segment</mat-label>
+        <mat-select formControlName="segment" required>
+          <mat-option value="" disabled>Select Segment</mat-option>
+          <mat-option value="Faoca">Faoca</mat-option>
+          <mat-option value="Segment 24">Segment 24</mat-option>
+          <mat-option value="Segment 30">Segment 30</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Navigation Buttons -->
+    <div class="buttons">
+      <button mat-button type="button" (click)="Goback()" class="back-button">⬅</button>
+      <button mat-button type="submit" class="next-button">Next</button>
+    </div>
+  </form>
+</div>

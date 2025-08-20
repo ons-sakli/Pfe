@@ -1,0 +1,144 @@
+<div class="dashboard-container">
+
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <mat-card class="card">
+      <mat-card-title>Total Operators</mat-card-title>
+      <mat-card-content>{{ totalOperators }}</mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-title>Total Quality Managers</mat-card-title>
+      <mat-card-content>{{ totalQMs }}</mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-title>Total Tests</mat-card-title>
+      <mat-card-content>{{ totalTests }}</mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-title>Total Segments</mat-card-title>
+      <mat-card-content>{{ totalSegments }}</mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-title>Total Machines</mat-card-title>
+      <mat-card-content>{{ totalMachines }}</mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Main Content Grid: Filters | Charts | Recent Tests -->
+  <div class="main-content">
+
+   <!-- Filters & Charts Row -->
+<div style="display: flex; gap: 20px; width: 100%; max-width: 1200px; margin: 0 auto;">
+  <!-- Left: Filters -->
+  <div class="filters-section">
+    <h2>📊 Select Machine & Section</h2>
+    <div class="filter-row">
+      <label for="machine">Machine</label>
+      <select id="machine" [(ngModel)]="selectedMachine" (change)="onSelectionChange()">
+        <option value="">-- Select Machine --</option>
+        <option *ngFor="let m of allMachines" [value]="m.nrMachine">{{ m.nrMachine }}</option>
+      </select>
+    </div>
+    <div class="filter-row">
+      <label for="section">Wire Section</label>
+      <select id="section" [(ngModel)]="selectedSection" (change)="onSelectionChange()">
+        <option value="">-- Select Section --</option>
+        <option *ngFor="let s of allSections" [value]="s.section">{{ s.section }}</option>
+      </select>
+    </div>
+    <!-- Refresh Button -->
+    <button mat-icon-button color="primary" (click)="refresh()" aria-label="Refresh">
+      <mat-icon>refresh</mat-icon>
+    </button>
+      <!-- ✅ New: Machine Performance Stats Box -->
+  <div class="machine-stats-box">
+    <h3>📊 Machine Health</h3>
+    <div class="stat-item">
+      <span class="dot green"></span>
+      <span>{{ machineStats.good }} Good</span>
+    </div>
+    <div class="stat-item">
+      <span class="dot yellow"></span>
+      <span>{{ machineStats.warning }} Warning</span>
+    </div>
+    <div class="stat-item">
+      <span class="dot red"></span>
+      <span>{{ machineStats.risky }} Risky</span>
+    </div>
+    <div class="overall-rating">
+      <strong>Overall: {{ machineStats.overallRating }}</strong>
+    </div>
+  </div>
+</div>
+  
+  <!-- Middle: X̄ and R Charts (Stacked) -->
+  <div class="charts-container">
+    <div *ngIf="hasData; else noData">
+      <!-- X̄ Chart -->
+      <div class="chart-wrapper">
+        <canvas baseChart [data]="meanChartData" [options]="meanChartOptions" [type]="'line'"></canvas>
+      </div><br>
+      <!-- R Chart -->
+      <div class="chart-wrapper">
+        <canvas baseChart [data]="rangeChartData" [options]="rangeChartOptions" [type]="'line'"></canvas>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <div class="no-data">
+        <p>❌ No test data found for "{{ selectedMachine }} - {{ selectedSection }}"</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+
+    <!-- Right: Recent Passing Tests -->
+    <div class="recent-tests">
+      <h2>🔹 Recent Passing Tests</h2>
+      <table mat-table [dataSource]="recentPassingTests" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="dateTest">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let test"> {{ test.dateTest | date }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="operator">
+          <th mat-header-cell *matHeaderCellDef> Operator </th>
+          <td mat-cell *matCellDef="let test"> {{ test.operatorMat }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="machine">
+          <th mat-header-cell *matHeaderCellDef> Machine </th>
+          <td mat-cell *matCellDef="let test"> {{ test.machineId }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="wireSection">
+          <th mat-header-cell *matHeaderCellDef> Wire Section </th>
+          <td mat-cell *matCellDef="let test"> {{ test.wireSection }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="result">
+          <th mat-header-cell *matHeaderCellDef> Result </th>
+          <td mat-cell *matCellDef="let test">
+            <span class="status-pass">{{ test.result }}</span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['dateTest', 'machine', 'wireSection', 'result']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['dateTest',  'machine', 'wireSection', 'result'];"></tr>
+      </table>
+
+      <div class="action-button-container">
+        <button class="consult-button" (click)="viewAllPassingTests()">
+          🔍 Consult All Passing Tests
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

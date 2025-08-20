@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+<div class="test-history-container">
+  <br>
+  <!-- Search Filters -->
+  <div class="filters">
+<input type="date" placeholder="From" [(ngModel)]="search.fromDate "  (input)="loadAllPassingTests()" />
+<input type="date" placeholder="To" [(ngModel)]="search.toDate"  (input)="loadAllPassingTests()" />
+<div *ngIf="search.fromDate && search.toDate && search.toDate < search.fromDate" 
+     style="color: #d32f2f; font-size: 13px; margin: 4px 0;">
+  End date cannot be before start date.
+</div>
+    <input type="text" placeholder="Machine ID" [(ngModel)]="search.machineId" (input)="loadAllPassingTests()" />
+    <input type="text" placeholder="Wire Section" [(ngModel)]="search.wireSection" (input)="loadAllPassingTests()" />
+    <button class="btn btn-clear" (click)="clearFilters()">Clear</button>
+  </div>
+
+  <!-- Results -->
+  <table class="history-table" *ngIf="paginatedTests.length > 0; else noDataTemplate">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Machine ID</th>
+        <th>Wire Section</th>
+        <th>Operator</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let test of paginatedTests">
+        <td>{{ test.dateTest }}</td>
+        <td>{{ test.machineId }}</td>
+        <td>{{ test.wireSection }}</td>
+        <td>{{ test.operatorMat }}</td>
+        <td>
+          <i class="material-icons eye-icon" (click)="viewDetails(test)" title="View Details">visibility</i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noDataTemplate>
+    <p>No tests found matching the criteria.</p>
+  </ng-template>
+
+  <!-- Pagination -->
+  <div class="paginator-wrapper" *ngIf="filteredTests.length > itemsPerPage">
+    <mat-paginator
+      [pageSize]="itemsPerPage"
+      [pageSizeOptions]="[5]"
+      [length]="filteredTests.length"
+      (page)="onPageChange($event)"
+      aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>

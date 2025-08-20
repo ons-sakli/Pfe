@@ -5,17 +5,30 @@
     </div>
     <div class="right-section">
       <h2 class="login-title">LOG IN</h2>
-      <p class="signup-text">
-        First time here? <a routerLink="/signup" class="signup-link">Sign up</a>
-      </p>
+
       <form class="login-form" (ngSubmit)="onLogin()">
         <input type="text"  name="username" placeholder="UserName" class="input-field" required />
-        <input type="password" [(ngModel)]="password" name="password" placeholder="Password" class="input-field" required />
-        <input type="text" [(ngModel)]="matricule" name="matricule" placeholder="matricule" class="input-field" required />
-      
-        <a href="#" class="forgot-password">Forgot Password ?</a>
+        <!-- Updated input field for identifier -->
+      <input
+        type="text"
+        [(ngModel)]="identifier"
+        name="identifier"
+        placeholder="Enter your Mat or email"
+        class="input-field"
+        required
+      />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Password"
+        class="input-field"
+        required
+      />
+
+      <a href="#" class="forgot-password">Forgot Password ?</a>
         
-        <button type="submit" class="login-button">Login</button>
+        <button type="submit" class="login-button">Submit</button>
       </form>
     </div>
   </div>

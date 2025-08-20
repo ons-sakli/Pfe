@@ -1,0 +1,92 @@
+<div class="user-section-bg">
+  <div class="role-buttons">
+    <button [class.active]="selectedRole === 'OPERATEUR'" (click)="selectRole('OPERATEUR')">
+      👷 Operateur
+    </button>
+    <button [class.active]="selectedRole === 'ADMIN'" (click)="selectRole('ADMIN')">
+      🛠️ Admin
+    </button>
+    <button [class.active]="selectedRole === 'QM'" (click)="selectRole('QM')">
+      ✅ Quality Manager
+    </button>
+  </div>
+  <div class="table-container" *ngIf="selectedRole">
+    <div *ngIf="selectedRole && groupedUsers[selectedRole]?.length">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th *ngIf="selectedRole === 'ADMIN'">UserNumber</th>
+
+            <th>Full Name</th>
+            <th *ngIf="selectedRole === 'QM'">Email</th> <!-- We'll adjust QM here later -->
+
+            <!-- Role-Specific Identifier -->
+            <th *ngIf="selectedRole === 'OPERATEUR'">Matricule</th>
+            <th *ngIf="selectedRole === 'QM'">Matricule</th>
+            <th *ngIf="selectedRole === 'ADMIN'">Email</th>
+            
+            <!-- Shared Columns -->
+            <th>Plant Site Name</th>
+            <th>Segment</th>
+            <th *ngIf="selectedRole === 'OPERATEUR' || selectedRole === 'QM'">Password</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+<tr *ngFor="let user of pagedUsers" [class.inactive-user]="user.active === false">
+            <td *ngIf="selectedRole === 'ADMIN'">{{ user.userNumber }}</td>  
+
+            <td>{{ user.firstName }} {{ user.lastName }}</td>
+            
+<td *ngIf="selectedRole === 'QM'">{{ user.email }}</td>
+          <!-- Identifier Cell -->
+            <td *ngIf="selectedRole === 'OPERATEUR'">{{ user.opMat }}</td>
+            <td *ngIf="selectedRole === 'QM'">{{ user.qmMat }}</td>
+            <td *ngIf="selectedRole === 'ADMIN'">{{ user.email }}</td>
+            <td *ngIf="selectedRole === 'ADMIN'" >{{ user.segmentInfo?.plantSiteName || 'N/A' }}</td>
+            <td *ngIf="selectedRole === 'ADMIN'">{{ user.segmentInfo?.segmentName || 'N/A' }}</td>  
+            <td *ngIf="selectedRole === 'OPERATEUR' || selectedRole === 'QM'">{{ user.plantSiteName }}</td>
+            <td *ngIf="selectedRole === 'OPERATEUR' || selectedRole === 'QM'">{{ user.segment }}</td>
+   <td *ngIf="selectedRole === 'OPERATEUR' || selectedRole === 'QM'">
+  <div class="password-cell">
+    <span>{{ user.showPassword ? user.password : '********' }}</span>
+    <button mat-icon-button (click)="togglePassword(user)">
+      <mat-icon>{{ user.showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+  </div>
+</td>
+ <!-- Actions -->
+  <td>
+  <button mat-icon-button 
+          [color]="user.active ? 'primary' : 'warn'" 
+          (click)="toggleUserStatus(user)" 
+          matTooltip="{{ user.active ? 'Deactivate User' : 'Activate User' }}">
+    <mat-icon>{{ user.active ? 'check_circle' : 'highlight_off' }}</mat-icon>
+  </button>
+</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Pagination + Search -->
+<div class="paginator-wrapper">
+  <mat-paginator
+    [length]="filteredUsers.length || 0"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+
+  <!-- Search box (right side inside pagination bar) -->
+  <div class="filter-box">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>
+        Search 
+        <span *ngIf="selectedRole === 'OPERATEUR'">by Matricule</span>
+        <span *ngIf="selectedRole === 'QM'">by Matricule</span>
+        <span *ngIf="selectedRole === 'ADMIN'">by UserNumber</span>
+      </mat-label>
+      <input matInput (keyup)="applyUserFilter($event)" placeholder="Type to filter..." />
+    </mat-form-field>
+  </div>
+</div>

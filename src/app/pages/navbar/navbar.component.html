@@ -1,16 +1,62 @@
 <nav class="navbar">
-    <div class="logo">
-      <img src="Fallback.png" alt="LEONI Logo" />
-    </div>
+  <div class="logo">
+    <img src="Fallback.png" alt="LEONI Logo" />
+  </div>
+<div class="welcome-user" *ngIf="currentUserRole">
+  Hello, {{ userInitials }} 
+</div>
+  <ul class="nav-links">
+
+    <!-- Launch Test: Operator and QM -->
+    <li *ngIf="isOperator || isQualityManager" routerLinkActive="active">
+      <a routerLink="/launch-test">Launch Test</a>
+    </li>
+
+   <!-- Profile: Admin only -->
+    <li *ngIf="isAdmin" routerLinkActive="active">
+      <a routerLink="/admin/profile">Profil</a>
+    </li>
+    <!-- Admin Dashboard: Admin and QM -->
+    <li *ngIf="isAdmin || isQualityManager" routerLinkActive="active">
+      <a routerLink="/admin/admindashboard">Dashboard</a>
+    </li>
+
+    <!-- Manage Dropdown: Admin only -->
+    <li *ngIf="isAdmin" class="dropdown" [class.active]="isSubRouteActive()">
+      <a class="dropdown-toggle">Manage ▾</a>
+      <ul class="dropdown-menu">
+        <li [class.active]="isExactRoute('/admin/AddUsers')">
+          <a routerLink="/admin/AddUsers">Users</a>
+        </li>
+        <li [class.active]="isExactRoute('/admin/ManageMachines')">
+          <a routerLink="/admin/ManageMachines">Machines</a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Test History: Admin and QM -->
+    <li *ngIf="isAdmin || isQualityManager" routerLinkActive="active">
+      <a routerLink="/admin/testHistory">Tests History</a>
+    </li>
+
   
-    <ul class="nav-links">
-      <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-      <li><a routerLink="/launch-test" routerLinkActive="active">Launch Test</a></li>
-      <li><a routerLink="/test-history" routerLinkActive="active">Test History</a></li>
-      <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
-    </ul>
-  
-    <div class="user-initials" (click)="goToProfile()" title="View Profile">
-      {{ userInitials }}
-    </div>  </nav>
-  
+  </ul>
+<div class="logout-container" *ngIf="!isAdmin">
+  <button class="logout-btn" (click)="logout()" title="Log out">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M17 7l-5 5 5 5V7zM19 3H9v2h10v14H9v2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 2v14H6V5h12z" />
+    </svg>
+    Logout
+  </button>
+</div>
+  <!-- Avatar Circle: Admin and QM -->
+  <div 
+    *ngIf="isAdmin "
+    class="user-initials"
+    [class.active]="isProfileActive"
+    (click)="goToProfile()"
+    title="View Profile"
+  >
+    {{ userInitials }}
+  </div>
+</nav>

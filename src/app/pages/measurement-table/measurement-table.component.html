@@ -1,0 +1,212 @@
+<app-navbar></app-navbar>
+<div class="measurement-table-container">
+  <h2>Measurement Table</h2>
+  <table class="large-table" *ngIf="measurements?.length && measurements[0]?.length">
+    <!-- Column Headers -->
+<tr>
+  <th></th>
+  <ng-container *ngFor="let col of columns; let c = index">
+    <th 
+      *ngIf="isAdmin || !hiddenColumns[c]" 
+      [class.hidden-col-header]="hiddenColumns[c] && isAdmin">
+      
+      <!-- Column Number -->
+      {{ col }}
+
+      <!-- Show "Saved" badge -->
+      <div *ngIf="savedColumns[c] && (means[c] !== null || ranges[c] !== null)" 
+           style="font-size: 10px; color: green; margin-top: 1px;">
+        ✅
+      </div>
+
+      <!-- Admin: Hide/Unhide Button -->
+      <div *ngIf="isAdmin" style="margin-top: 4px;">
+        <button 
+          *ngIf="!hiddenColumns[c]" 
+          mat-stroked-button 
+          color="warn" 
+          size="small" 
+          (click)="openHideModal(c)">
+          🔒
+        </button>
+        <button 
+          *ngIf="hiddenColumns[c]" 
+          mat-stroked-button 
+          color="warn"
+          size="small" 
+          (click)="openUnhideModal(c)">
+          🔓
+        </button>
+
+        <!-- Tooltip: Show reason -->
+        <div *ngIf="hiddenColumns[c]" style="font-size: 10px; color: #ffffff; cursor: help;"
+             [matTooltip]="hiddenReasons[c]">
+          {{ hiddenReasons[c] | slice:0:20 }}...
+        </div>
+      </div>
+    </th>
+  </ng-container>
+</tr>
+
+<tr *ngIf="isOperator || isQM && !hasSavedThisSession">
+  <th>
+    <div style="font-size: small; color: #e6781f;">Traction> </div>
+    <div style="font-size: small; color: #e6781f; margin-top: 0px;">
+      {{ tracMin != null ? tracMin + ' N' : '?' }}
+    </div>
+  </th>
+  <ng-container *ngFor="let col of columns; let c = index">
+    <td *ngIf="!hiddenColumns[c] && !savedColumns[c]" style="padding: 0;">
+ <input
+  type="number"
+  (input)="onTractionMinInput($event, c)"
+  [placeholder]="tracMin != null ?  + tracMin : 'Enter min traction'"
+  style="width: 75%; text-align: center; padding: 4px; font-size: 13px; border: 1px solid #ccc; border-radius: 10px;"
+/>
+    </td>
+    <td *ngIf="!hiddenColumns[c] && savedColumns[c]" style="color: #666; font-size: 12px; text-align: center;">
+      {{ tractionMins[c] }} N
+    </td>
+  </ng-container>
+</tr>
+
+    <!-- Data Rows -->
+<tr *ngFor="let row of rows; let r = index">
+  <th>{{ row }}</th>
+  <ng-container *ngFor="let col of columns; let c = index">
+    <td   *ngIf="isAdmin || !hiddenColumns[c]" [class.hidden-col-cell]="hiddenColumns[c] && isAdmin">
+      <input
+        [type]="isTextRow(r) ? 'text' : 'number'"
+        [value]="showRawData ? measurements[r][c] : (isOperator && !savedColumns[c] ? measurements[r][c] : '')"
+        (input)="!savedColumns[c] && !hasSavedThisSession ? onInput($event, r, c) : null"
+        [name]="'r' + r + 'c' + c"
+        [disabled]="savedColumns[c] || hasSavedThisSession || (hiddenColumns[c] && isAdmin)"
+        [placeholder]="!showRawData && savedColumns[c] ? '---' : ''"
+        style="text-align: center; opacity: 0.8;"
+      />
+    </td>
+  </ng-container>
+</tr>
+
+    <!-- Mean Row -->
+<tr class="mean-row">
+  <th>Mean (X̄)</th>
+  <ng-container *ngFor="let col of columns; let c = index">
+    <td *ngIf="isAdmin || !hiddenColumns[c]" [class.hidden-col-cell]="hiddenColumns[c] && isAdmin">
+      {{ (savedColumns[col] || means[col] !== null) && means[col] !== null ? means[col] : '-' }}
+    </td>
+  </ng-container>
+</tr>
+
+    <!-- Range Row -->
+<tr class="range-row">
+  <th>Range (R)</th>
+  <ng-container *ngFor="let col of columns; let c = index">
+    <td *ngIf="isAdmin || !hiddenColumns[c]" [class.hidden-col-cell]="hiddenColumns[c] && isAdmin">
+      {{ (savedColumns[col] || ranges[col] !== null) && ranges[col] !== null ? ranges[col] : '-' }}
+    </td>
+  </ng-container>
+</tr>
+    <!-- Result Row -->
+<tr class="result-row">
+  <th>Status <span style="font-size: 0.8em; color: #e6781f;">(?)</span></th>
+  <ng-container *ngFor="let result of columnResults; let c = index">
+    <td 
+      *ngIf="isAdmin || !hiddenColumns[c]" 
+      [class.hidden-col-cell]="hiddenColumns[c] && isAdmin"
+      [ngClass]="{
+        'text-success': result === 'PASS',
+        'text-warning': result === 'ALERT',
+        'text-danger': result === 'FAIL'
+      }"
+      [title]="getTooltip(result)"
+      style="font-weight: bold; cursor: help;">
+      {{ result }}
+    </td>
+  </ng-container>
+</tr>
+  </table>
+<div *ngIf="showHideModal" class="modal-overlay">
+  <div class="modal">
+    <h3>Hide Column {{ columnToModify! + 1 }}</h3>
+    <p>Enter a reason for hiding this column:</p>
+    <textarea
+      [(ngModel)]="modalReason"
+      placeholder="e.g. Sensor malfunction, invalid data, calibration error..."
+      rows="3"
+      class="modal-textarea">
+    </textarea>
+    <div class="modal-actions">
+      <button mat-button (click)="cancelModal()">Cancel</button>
+<button 
+  mat-raised-button 
+  [disabled]="modalReason.trim().length < 5"
+  (click)="confirmHide()"
+  class="btn-confirm-hide">
+  Hide Column
+</button> 
+   </div>
+  </div>
+</div>
+<!-- Unhide Column Modal -->
+<div *ngIf="showUnhideModal" class="modal-overlay" (click)="cancelModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <h3>Unhide Column {{ columnToModify! + 1 }}</h3>
+    <p>Are you sure you want to restore this column?</p>
+    <div class="modal-actions">
+      <button mat-button (click)="cancelModal()">Cancel</button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        (click)="confirmUnhide()">
+        Unhide Column
+      </button>
+    </div>
+  </div>
+</div>
+<!-- PDF Export (Admin Only) -->
+<button 
+  *ngIf="!isOperator" 
+  (click)="exportToPDF()" 
+  class="btn btn-pdf">
+  📄 Export to PDF
+</button>
+
+<!-- Actions (Operator & QM Only) -->
+<div class="button-group" *ngIf="isOperator || isQM">
+  <button 
+  class="btn-calculate-save"
+  (click)="calculateAndSave()" 
+  [disabled]="hasSavedThisSession">
+  {{ hasSavedThisSession ? 'Already Saved' : 'Calculate & Save' }}
+</button>
+<button 
+  *ngIf="!isOperator" 
+  (click)="backToForm()" 
+  class="btn-back">
+  Back
+</button>
+</div>
+<button 
+  *ngIf="!isOperator && !isQM" 
+  (click)="backToHistory()" 
+  class="btn-back">
+  Back
+</button>
+<!-- Charts (Visible to Admin, QM, Operator) -->
+<div *ngIf="showCharts" class="charts">
+  <div class="chart-container">
+    <canvas #meanChart baseChart
+            [type]="'line'"
+            [data]="meanData"
+            [options]="meanOpts">
+    </canvas>
+  </div>
+  <div class="chart-container">
+    <canvas #rangeChart baseChart
+            [type]="'line'"
+            [data]="rangeData"
+            [options]="rangeOpts">
+    </canvas>
+  </div>
+</div>

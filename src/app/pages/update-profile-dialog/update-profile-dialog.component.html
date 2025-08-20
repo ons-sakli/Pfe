@@ -1,35 +1,87 @@
-<h2 mat-dialog-title >Update Your Profile</h2>
+<h2 mat-dialog-title>Update Your Profile</h2>
 
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" id="username" formControlName="username" required />
+<form [formGroup]="profileForm" class="profile-update-form">  <div mat-dialog-content class="form-content">
+    <!-- Username (Read-only) -->
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" formControlName="username" readonly class="readonly-input" />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="input-field" />
+    </div>
+
+    <!-- Plant -->
+    <div class="form-group">
+      <label for="plant">Plant</label>
+      <mat-select 
+        id="plant" 
+        formControlName="plant" 
+        class="input-field"
+      >
+        <mat-option value="" disabled>Select Plant</mat-option>
+        <mat-option *ngFor="let plant of plants" [value]="plant.plantSiteName">
+          {{ plant.plantSiteName }}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <!-- Step 1: Current Password -->
+    <div class="form-group">
+      <label for="currentPassword">Current Password</label>
+      <input
+        type="password"
+        id="currentPassword"
+        formControlName="currentPassword"
+        class="input-field"
+        placeholder="Enter your current password"
+        (input)="onCurrentPasswordInput()"
+      />
+      <div *ngIf="profileForm.get('currentPassword')?.invalid && profileForm.get('currentPassword')?.touched" class="error">
+        Required
+      </div>
+    </div>
+
+    <!-- Step 2: New & Confirm Password (appear only after current is filled) -->
+    <div class="password-change-section" *ngIf="showNewPasswordFields">
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input
+          type="password"
+          id="newPassword"
+          formControlName="newPassword"
+          class="input-field"
+        />
+        <div *ngIf="profileForm.get('newPassword')?.invalid && profileForm.get('newPassword')?.touched" class="error">
+          Must be at least 6 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm New Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          class="input-field"
+        />
+        <div *ngIf="passwordMismatch" class="error">Passwords do not match.</div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="opMat">OpMat:</label>
-    <input type="text" id="opMat" formControlName="opMat" required />
-  </div>
-
-  <div class="form-group">
-    <label for="segment">Segment:</label>
-    <mat-select formControlName="segment" required>
-      <mat-option value="" disabled selected>Select Segment</mat-option>
-      <mat-option value="Faoca">Faoca</mat-option>
-      <mat-option value="Segment 24">Segment 24</mat-option>
-      <mat-option value="Segment 30">Segment 30</mat-option>
-    </mat-select>
-  </div>
-
-<div class="form-group">
-  <label for="groupe">Groupe:</label>
-  <mat-select formControlName="groupe" required>
-    <mat-option value="" disabled selected>Select Groupe</mat-option>
-    <mat-option *ngFor="let groupe of groupes" [value]="groupe.value">{{ groupe.label }}</mat-option>
-  </mat-select>
-</div>
-  <div class="form-actions">
-    <button type="submit" [disabled]="profileForm.invalid">Save</button>
-    <button type="button">Cancel</button>
+  <div mat-dialog-actions class="form-actions">
+    <button type="button" mat-button (click)="closeDialog()">Cancel</button>
+    <button 
+      type="button" 
+      mat-raised-button 
+      color="primary" 
+      (click)="onSubmit()"
+      [disabled]="showNewPasswordFields && passwordMismatch"
+    >
+      Save Changes
+    </button>
   </div>
 </form>

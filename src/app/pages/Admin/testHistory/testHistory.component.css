@@ -1,0 +1,274 @@
+/* Remove full-body override — keep it local */
+.test-history-container {
+  min-height: calc(100vh - 60px);
+  width: 100vw;
+  padding: 0px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Background: Full cover with dark overlay */
+  background: url('/17976.jpg') no-repeat center center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  /* Layout */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  /* Prevent overflow */
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Optional overlay for readability */
+.test-history-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: -1;
+}
+
+/* Content stays above overlay */
+.test-history-container > * {
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Page Title */
+.test-history-container h2 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Filters Section */
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.filters input {
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  width: 180px;
+  transition: all 0.3s ease;
+}
+
+.filters input::placeholder {
+  color: #aaa;
+}
+
+.filters input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(5, 59, 117, 0.5);
+  border-color: #002857;
+}
+
+/* Table Styling */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+}
+
+.history-table th,
+.history-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.history-table th {
+  background-color: #002857;
+  color: #e6781f;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.history-table tbody tr:hover {
+  background-color: #f1f8ff;
+  cursor: pointer;
+}
+
+.history-table td {
+  color: #333;
+}
+
+/* Button Base Style */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 17px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Clear Button */
+.btn-clear {
+  background-color: #002857;
+  color: white;
+}
+
+.btn-clear:hover {
+  background-color: #002857;
+  box-shadow: 0 4px 8px rgba(32, 62, 231, 0.521);
+  color: #eb6020e0;
+}
+
+/* Eye Icon (Visibility) */
+.eye-icon {
+  font-family: 'Material Icons';
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  color: #002857;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+  padding: 6px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.eye-icon:hover {
+  color: #eb6020e0;
+  background-color: #e6f7ff;
+  transform: scale(1.1);
+}
+
+.eye-icon:active {
+  transform: scale(1);
+  color: #004085;
+}
+
+.eye-icon:hover {
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+/* Empty State */
+p {
+  color: #ffffff;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Mat Paginator — Aligned to the Right */
+.mat-mdc-paginator {
+  padding: 0px 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-top: 0px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 0;
+}
+
+.mat-mdc-paginator-container {
+  justify-content: flex-end !important;
+}
+
+/* Text styling */
+.mat-mdc-paginator-range-label {
+  color: #333;
+  font-size: 14px;
+}
+
+/* Page size dropdown */
+.mat-mdc-form-field {
+  font-size: 14px;
+}
+
+.mat-mdc-select-value {
+  color: #002857;
+}
+
+/* Previous/Next Buttons */
+.mat-mdc-button.mdc-icon-button {
+  background-color: #002857;
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin: 0 4px;
+}
+
+.mat-mdc-button.mdc-icon-button:hover:not(:disabled) {
+  background-color: #003d7a;
+}
+
+.mat-mdc-button.mdc-icon-button:disabled {
+  background-color: #eee;
+  color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters input {
+    width: 100%;
+  }
+
+  .history-table th, .history-table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  .test-history-container h2 {
+    font-size: 1.5rem;
+  }
+
+  /* On small screens, center paginator */
+  .mat-mdc-paginator-container {
+    justify-content: center !important;
+  }
+
+  .mat-mdc-paginator-range-actions,
+  .mat-mdc-paginator-navigation {
+    margin: 0;
+  }
+}

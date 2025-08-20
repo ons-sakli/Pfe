@@ -9,14 +9,17 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
   showNavbar: boolean = false;
+
   constructor(private router: Router) {
+ 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Define routes where the navbar should be visible
         const operatorRoutes = ['/dashboard', '/launch-test', '/test-history', '/profile'];
-        this.showNavbar = operatorRoutes.includes(event.urlAfterRedirects);
+        const adminRoutes = ['/admin/admindashboard', '/admin/AddUsers', '/admin/historique', '/admin/profile'];
+        this.showNavbar = operatorRoutes.includes(event.urlAfterRedirects) || adminRoutes.some(route => event.urlAfterRedirects.startsWith(route));
       }
     });
   }
+
   title = 'my-frontend-app';
 }

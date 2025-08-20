@@ -1,0 +1,120 @@
+/* Section with background */
+.update-machine-section {
+  background: url('/17976.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 3rem 2rem;
+  min-height: 600px; /* consistent with user-section-bg */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-x: hidden; /* prevent horizontal scroll */
+  align-items: center; /* center container */
+}
+
+/* Main container */
+.update-machine-container {
+  width: 100%;
+  max-width: 1000px;
+   background-color: rgba(255, 255, 255, 0.82); /* semi-transparent white */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.update-machine-container h1 {
+  text-align: center;
+  color: #002857;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+/* Table container with horizontal scroll */
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Table style */
+.full-width-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0px;
+  background-color: #f9f9f9;
+  table-layout: fixed;
+  min-width: 900px; /* a bit wider */
+}
+
+.full-width-table th,
+.full-width-table td {
+  border: 1px solid #ddd;
+  text-align: left;
+  min-width: 110px; /* consistent width */
+  white-space: nowrap;
+  padding: 8px;
+  min-width: 120px; /* Ensure consistent width per column */
+}
+
+.full-width-table th {
+  background-color: #002857; /* same blue */
+  color: #e6781f; /* orange text */
+    font-size: 15px;
+    font-weight: bold;
+   
+
+
+}
+
+/* Hover on table rows */
+.full-width-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Table cell inputs */
+.full-width-table td input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Save button styling */
+.full-width-table button {
+  background-color: transparent;
+  color: #001f3f;
+  padding: 6px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Save button hover */
+.full-width-table button:hover {
+  color: #e6781f;
+}
+
+.inactive-machine {
+  text-decoration: line-through;
+  color: #888;
+  opacity: 0.6;
+}
+
+.paginator-wrapper {
+  position: relative;
+  margin-top: 16px;
+}
+
+.filter-box {
+  position: absolute;
+    left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 250px;
+}
+.search-field {
+  width: 100%;
+}

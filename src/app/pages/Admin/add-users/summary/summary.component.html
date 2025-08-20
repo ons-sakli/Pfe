@@ -1,0 +1,52 @@
+<div class="summary-container">
+  <!-- Account Details -->
+  <div class="summary-box">
+    <div class="summary-title">
+      <span>Account Details</span>
+      <span class="edit-icon" (click)="goToStep(0)">✍🏻</span>
+    </div>
+    <div class="summary-content">
+      <p>Username: {{ authService.accountDetails?.username }}</p>
+            <p *ngIf="authService.accountDetails?.matricule">Matricule: {{ authService.accountDetails?.matricule }}</p>
+      <p>Role: {{ authService.accountDetails?.role }}</p>
+      <p>Password: 
+        <span *ngIf="!showPassword">••••••••</span>
+        <span *ngIf="showPassword">{{ authService.accountDetails?.password }}</span>
+        <button mat-icon-button (click)="togglePassword(); $event.stopPropagation()">
+          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </p>
+    </div>
+  </div>
+  <!-- Personal Details -->
+  <div class="summary-box">
+    <div class="summary-title">
+      <span>Personal Details</span>
+      <span class="edit-icon" (click)="goToStep(1)">✍🏻</span>
+    </div>
+    <div class="summary-content">
+      <p>First Name: {{ authService.personalDetails?.firstName }}</p>
+      <p>Last Name: {{ authService.personalDetails?.lastName }}</p>
+      <p>National ID Number: {{ authService.personalDetails?.nid }}</p>
+      <p>Email: {{ authService.personalDetails?.email }}</p>
+      <p>Phone Number: {{ authService.personalDetails?.phoneNumber }}</p>
+    </div>
+  </div>
+  <!-- Work Information -->
+  <div class="summary-box">
+    <div class="summary-title">
+      <span>Work Information</span>
+      <span class="edit-icon" (click)="goToStep(2)">✍🏻</span>
+    </div>
+    <div class="summary-content">
+      <p>Factory Site: {{ authService.workInformation?.factorySite }}</p>
+      <p>Segment: {{ authService.workInformation?.segment }}</p>
+    </div>
+  </div>
+  <!-- Confirm Button -->
+  <div class="confirm-button-container">
+    <button class="btn-confirm" (click)="Confirm()" [disabled]="isConfirming">
+      {{ isConfirming ? 'Creating Users...' : 'Confirm' }}
+    </button>
+  </div>
+</div>
